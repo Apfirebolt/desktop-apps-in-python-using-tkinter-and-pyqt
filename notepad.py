@@ -274,7 +274,7 @@ def font_size():
 
 
 root = Tk()
-root.title("jotter")
+root.title("Notepad in Tkinter")
 
 text = Text(root, width=200, undo=True)
 text_size = 11

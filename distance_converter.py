@@ -33,9 +33,10 @@ root.columnconfigure(0, weight=1)
 
 # -- Widgets --
 
-metres_label = ttk.Label(main, text="metres")
-metres_input = ttk.Entry(main, width=10, textvariable=metres_value, font=(None, 15))  # None means "don't change the font".
-feet_label = ttk.Label(main, text="feet")
+metres_label = ttk.Label(main, text="Metres")
+metres_input = ttk.Entry(main, width=10, textvariable=metres_value, font=(None, 15))
+
+feet_label = ttk.Label(main, text="Feet")
 feet_display = ttk.Label(main, textvariable=feet_value)
 calc_button = ttk.Button(main, text="Calculate", command=calculate_feet)
 
@@ -51,7 +52,6 @@ feet_display.grid(column=1, row=1, sticky="EW")
 calc_button.grid(column=0, row=2, columnspan=2, sticky="EW")
 
 
-# winfo_children stands for "widget info children", and gets all the children of a widget.
 for child in main.winfo_children():
     child.grid_configure(padx=15, pady=15)
 
