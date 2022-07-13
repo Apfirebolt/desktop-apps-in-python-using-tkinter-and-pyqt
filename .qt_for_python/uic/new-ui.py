@@ -26,6 +26,9 @@ class Ui_Dialog(object):
         self.textBrowser = QTextBrowser(Dialog)
         self.textBrowser.setObjectName(u"textBrowser")
         self.textBrowser.setGeometry(QRect(40, 20, 256, 192))
+        self.checkBox = QCheckBox(Dialog)
+        self.checkBox.setObjectName(u"checkBox")
+        self.checkBox.setGeometry(QRect(50, 230, 81, 20))
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
@@ -41,5 +44,6 @@ class Ui_Dialog(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:7.8pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Omni Text Mecharust</p></body></html>", None))
+        self.checkBox.setText(QCoreApplication.translate("Dialog", u"Oregano", None))
     # retranslateUi
 
