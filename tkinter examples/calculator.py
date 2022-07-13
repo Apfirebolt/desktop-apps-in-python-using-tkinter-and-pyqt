@@ -1,8 +1,6 @@
 from tkinter import *
 
 root = Tk()
-#button_9 = Button(label_key,text='9',height=3,width=5,font=('Helvetica','12'))
-#button_9.grid(row=0,column=0)
 class Calculator:
     def click_button(self,numbers):
         global operator
@@ -144,5 +142,5 @@ class Calculator:
         button_rbrace.pack()
 
 c = Calculator(root)
-root.title("Sushant\'s Calculator")
+root.title("New Calculator")
 root.mainloop()
