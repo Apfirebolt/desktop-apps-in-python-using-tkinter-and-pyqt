@@ -1,6 +1,5 @@
 from tkinter import *
 
-root = Tk()
 class Calculator:
     def click_button(self,numbers):
         global operator
@@ -11,10 +10,6 @@ class Calculator:
     def clear(self):
         self.entry.delete(0,END)
         self.operator =""
-
-    ''' def delete(self):
-        self.operator = str(self.entry.delete(len(self.entry.get())-1))
-    '''
 
 
     def evaluate(self):
@@ -28,11 +23,9 @@ class Calculator:
         self.var = StringVar()
         frame_s = Frame(master, height=400, width=45 )
         frame_s.pack(side=TOP, fill=BOTH, expand=True)
-        self.entry = Entry(frame_s,textvariable=self.var,bg='grey',width=45,bd=20,insertwidth=4,justify='right',font=('arial',10,'bold'))
+        self.entry = Entry(frame_s,textvariable=self.var,bg='grey',width=45,bd=10,insertwidth=4,justify='right',font=('arial',10,'bold'))
         self.entry.pack()
-        self.t = Text(self.entry,height=40)
-
-
+        self.t = Text(self.entry,height=30)
 
         label_key = Label(root, height=15, width=30,bd=10,bg='gray50')
         label_key.pack(side=LEFT, fill=BOTH, expand=True)
@@ -105,11 +98,6 @@ class Calculator:
         button_C = Button(label_C, text='C', font=('Helvetica', '16'), height=1, width=10,command=  self.clear,bg='black',fg='cyan')
         button_C.pack(side=LEFT)
 
-        '''label_del = Label(label_fkey, bg ='black')
-        label_del.grid(row=0,column=1,sticky=E)
-        button_del = Button(label_del, text='del', font=('Helvetica', '16'),bd=3, height=1, width=3,command=  self.delete)
-        button_del.pack()'''
-
         label_sub = Label(label_fkey, bg='black')
         label_sub.grid(row=1, column=0, sticky=W, pady=10)
         button_sub = Button(label_sub, text='-', font=('Helvetica', '16'), height=1, width=3,command= lambda: self.click_button('-'),bg='black',fg='cyan')
@@ -141,6 +129,9 @@ class Calculator:
                                command=lambda: self.click_button(')'),bg='black',fg='cyan')
         button_rbrace.pack()
 
+
+root = Tk()
 c = Calculator(root)
 root.title("New Calculator")
+root.geometry('400x400')
 root.mainloop()
