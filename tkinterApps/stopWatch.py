@@ -1,8 +1,37 @@
 import tkinter as tk
 from datetime import datetime
+import time
 counter = 66600
 
 running = False
+class Clock(tk.Label):
+    def __init__(self, parent=None, seconds=True):
+        tk.Label.__init__(self, parent)
+
+        self.display_seconds = seconds
+        if self.display_seconds:
+            self.time = time.strftime('%I:%M:%S')
+        else:
+            self.time = time.strftime('%I:%M %p').lstrip('0')
+        self.display_time = self.time
+        self.configure(text=self.display_time)
+
+        self.after(200, self.tick)
+
+    def tick(self):
+        if self.display_seconds:
+            new_time = time.strftime('%I:%M:%S')
+        else:
+            new_time = time.strftime('%I:%M %p').lstrip('0')
+        if new_time != self.time:
+            self.time = new_time
+            self.display_time = self.time
+            self.config(text=self.display_time)
+        self.after(200, self.tick)
+
+def timestamp():
+    print(time.strftime("%I:%M:%S"))
+
 def count():
     if running:
         global counter
@@ -61,6 +90,11 @@ applicationWindow.title('Stop Watch in Tkinter')
 applicationWindow.minsize(width=250, height=70)
 applicationWindow.geometry('400x400')
 
+# Add normal clock timing through Clock class
+clock = Clock(applicationWindow)
+clock.pack()
+clock.configure(bg='white', fg='black', font=("helvetica", 65))
+
 label = tk.Label(applicationWindow, text="Stopwatch!", fg="#eb344f", font="Verdana 24 bold")
 label.pack(padx=4, pady=4)
 
@@ -68,6 +102,7 @@ listbox = tk.Listbox(applicationWindow, width=30, fg="#349eeb", font="Verdana 12
 
 listbox.pack(padx=4, pady=4)
 f = tk.Frame(applicationWindow)
+
 start = tk.Button(f, text='Start', width=10, bg='#eb344f', fg='white', command=lambda:Start(label))
 stop = tk.Button(f, text='Stop',width=10, bg='#eb344f', state='disabled', fg='white', command=Stop)
 reset = tk.Button(f, text='Reset',width=10, bg='#eb344f', state='disabled', fg='white', command=lambda:Reset(label))

@@ -3,12 +3,6 @@ from tkinter.filedialog import askopenfilename, asksaveasfile
 import threading
 import time
 
-'''from ctypes import *
-sum = CDLL('/home/manjunath/libsum.so')  #UTF-8 to UNICODE
-sum.our_function.argtypes = [c_int, c_char_p]
-sum.our_function.restype = c_char_p
-'''
-
 
 def about():
     filewin = Toplevel(root)
@@ -309,12 +303,3 @@ helpmenu.add_command(label="About...", command=about)
 
 root.config(menu=menubar)
 root.mainloop()
-
-'''def our_function(numbers):
-  num_numbers = len(numbers)
-  #array_type = c_char_p(numbers)
-  #print(type(array_type))
-  _result = sum.our_function(num_numbers,numbers)
-  return(_result.value)
-print(our_function("abc"))
-'''
