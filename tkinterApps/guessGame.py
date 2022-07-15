@@ -29,7 +29,7 @@ def mainGame(guess):
     tries = tries + 1
     entry.delete("0", "end")
     if tries > 5:
-        label.config(text=f"You have lost the game.", fg="#a8325c")
+        label.config(text=f"You have lost the game. The correct number was {randomNum}", fg="#a8325c", wraplength=350)
         root.update()
         time.sleep(4)
         pickNumber()
