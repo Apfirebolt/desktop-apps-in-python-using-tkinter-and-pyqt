@@ -113,4 +113,5 @@ class FeetToMetres(ttk.Frame):
 
 
 root = DistanceConverter()
+root.geometry('300x300')
 root.mainloop()

@@ -2,57 +2,68 @@ import time
 import random
 import tkinter as tk
 
-root = tk.Tk()
-root.title("The Number Guessing Game")
+global randomNum
+tries = 0
 
-count = guess = 0
-
-label = tk.Label(root, text="The Number Guessing Game", font="Helvetica 20 italic")
-label.pack(fill=tk.BOTH, expand=True)
-
-
-def pick_number():
-    global randomnum
-    label.config(text="I am tkinking of a Number", fg="black")
-    randomnum = random.choice(range(10000)) / 100
-    entry.focus_force()
-
-
-def main_game(guess):
-    global count
-    count = count + 1
-    entry.delete("0", "end")
-    if guess < randomnum:
-        label["text"] = "Higher!"
-    elif guess > randomnum:
-        label["text"] = "Lower!"
-    else:
-        label.config(text=f"CORRECT! You got it in {count} tries", fg="red")
-        root.update()
-        time.sleep(4)
-        pick_number()
-        count = 0
-
-
-def get(ev=None):
+def getNumber():
     guess = entry.get()
+    global randomNum
     if len(guess) > 0 and guess.lower() == guess.upper():
-        guess = float(guess)
-        main_game(guess)
+        guess = int(guess)
+        mainGame(guess)
     else:
-        label["text"] = "MUST be A NUMBER"
+        label["text"] = "You must enter a number"
         entry.delete("0", "end")
 
 
-entry = tk.Entry(root, font="Helvetica 15 normal")
+def pickNumber():
+    global randomNum
+    label.config(text="The system has picked a number", fg="black")
+    randomNum = random.randint(1, 100)
+    # print(randomNum)
+    entry.focus_force()
+
+def mainGame(guess):
+    global tries
+    global randomNum
+    tries = tries + 1
+    entry.delete("0", "end")
+    if tries > 5:
+        label.config(text=f"You have lost the game.", fg="#a8325c")
+        root.update()
+        time.sleep(4)
+        pickNumber()
+    if guess < randomNum:
+        label["text"] = "Selected Number is higher!"
+    elif guess > randomNum:
+        label["text"] = "Selected Number is lower"
+    else:
+        label.config(text=f"CORRECT! You got it in {tries} tries", fg="#32a852")
+        root.update()
+        time.sleep(4)
+        pickNumber()
+        count = 0
+
+    
+root = tk.Tk()
+root.title("The Number Guessing Game")
+
+label = tk.Label(root, text="The Number Guessing Game", font="Verdana 20")
+label.pack(fill=tk.BOTH, expand=True)
+
+helpLabel = tk.Label(root, text="The number would be between 1-100, you have 5 tries to guess the number", font="Verdana 12", wraplength=350)
+helpLabel.pack(fill=tk.BOTH, expand=True)
+
+entry = tk.Entry(root, font="Verdana 15 normal")
 entry.pack(fill=tk.BOTH, expand=True)
-entry.bind("<Return>", get)
-b1 = tk.Button(root, text="Guess", command=get)
-b1.pack(fill=tk.BOTH, expand=True)
 
-pick_number()
+guessButton = tk.Button(root, bg='#CCC', text="Guess Number", command=getNumber)
+guessButton.config( height = 2, width = 15)
+guessButton.pack(padx=10, pady=10)
 
-root.geometry("470x110")
+pickNumber()
+
+root.geometry("550x250")
 root.minsize(470, 110)
 
 root.mainloop()
