@@ -59,4 +59,5 @@ for child in main.winfo_children():
 root.bind("<Return>", calculate_feet)
 root.bind("<KP_Enter>", calculate_feet)
 
+root.geometry('800x600')
 root.mainloop()
