@@ -1,5 +1,11 @@
 from tkinter import *
 
+try:
+    from ctypes import windll
+    windll.shcore.SetProcessDpiAwareness(1)
+except:
+    pass
+
 root = Tk()
 
 column1 = Frame(root)
