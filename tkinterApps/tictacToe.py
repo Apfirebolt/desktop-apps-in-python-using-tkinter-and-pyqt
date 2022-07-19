@@ -3,7 +3,7 @@ import tkinter as tk
 class TTT(tk.Tk):
 	def __init__(self):
 		super().__init__()
-		self.title("Tic Tao Toe")
+		self.title("Tic Tac Toe")
 		self.btns = []
 		self.turn = True
 		self.count = 0
