@@ -102,7 +102,7 @@ class Calculator:
         button_divide.pack()
 
         label_clear = Label(frame_bottom, bg='black')
-        label_clear.grid(row=3, column=9, padx=16, pady=16)
+        label_clear.grid(row=4, column=11, padx=16, pady=16)
         button_clear = Button(label_clear, text='CLEAR', font=('Helvetica', '16'),bg='black',fg='cyan', command=lambda:self.clear())
         button_clear.pack()
     
