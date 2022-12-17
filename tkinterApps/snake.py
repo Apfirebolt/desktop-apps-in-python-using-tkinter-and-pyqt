@@ -125,6 +125,7 @@ class Snake(tk.Canvas):
         self.after(GAME_SPEED, self.perform_actions)
 
     def set_new_food_position(self):
+        
         while True:
             x_position = randint(1, 29) * MOVE_INCREMENT
             y_position = randint(3, 30) * MOVE_INCREMENT
@@ -132,6 +133,7 @@ class Snake(tk.Canvas):
 
             if food_position not in self.snake_positions:
                 return food_position
+            
 
 
 root = tk.Tk()
