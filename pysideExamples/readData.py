@@ -10,8 +10,9 @@ class MyWindow(QtWidgets.QWidget):
         QtWidgets.QWidget.__init__(self, *args)
         # setGeometry(x_pos, y_pos, width, height)
         self.setGeometry(300, 200, 970, 650)
+        self.data = data_list
         self.setWindowTitle("Click on column title to sort")
-        table_model = MyTableModel(self, data_list, header)
+        table_model = MyTableModel(self, self.data, header)
         self.proxy_model = QtCore.QSortFilterProxyModel()
         self.proxy_model.setSourceModel(table_model)
         self.proxy_model.setFilterKeyColumn(0)
@@ -57,13 +58,29 @@ class MyWindow(QtWidgets.QWidget):
         self.setLayout(layout)
     
     def update_search(self, text):
+        print('Connected...', self.proxy_model)
         self.proxy_model.setFilterWildcard('*%s*' % text)
 
     def filter_changed(self, text):
+        new_items = []
+        
         if text == 'Car Name':
+           
+            table_model = MyTableModel(self, self.data, header)
+            self.proxy_model.setSourceModel(table_model)
+            self.table_view.setModel(self.proxy_model)
             self.proxy_model.setFilterKeyColumn(0)
+
         elif text == 'Year':
-            self.proxy_model.setFilterKeyColumn(1)
+            for item in self.data:
+                if item[7] == 'Manual':
+                    new_items.append(item)
+            
+            table_model = MyTableModel(self, new_items, header)
+            self.proxy_model.setSourceModel(table_model)
+            self.table_view.setModel(self.proxy_model)
+            self.proxy_model.setFilterKeyColumn(0)
+
         else:
             self.proxy_model.setFilterKeyColumn(2)
 
@@ -107,7 +124,7 @@ class MyTableModel(QtCore.QAbstractTableModel):
         self.emit(QtCore.SIGNAL("layoutChanged()"))
 
 
-df = pd.read_csv('cardata.csv')
+df = pd.read_csv('pysideExamples/cardata.csv')
 
 header = list(df.columns)
 data_list = list(df.itertuples(index=False, name=None))

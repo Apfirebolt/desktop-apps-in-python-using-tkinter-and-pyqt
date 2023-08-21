@@ -1,7 +1,7 @@
 from PyQt5.QtCore import pyqtProperty, Qt, QVariant
 from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import (QApplication, QComboBox, QGridLayout,
-        QItemEditorCreatorBase, QItemEditorFactory, QTableWidget,
+from PyQt5.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout,
+        QItemEditorCreatorBase, QItemEditorFactory, QPushButton, QTableWidget,
         QTableWidgetItem, QWidget)
 
 
@@ -49,8 +49,8 @@ class Window(QWidget):
             ("Ferdinand", QColor('springgreen'))
         ]
 
-        table = QTableWidget(3, 2)
-        table.setHorizontalHeaderLabels(["Name", "Hair Color"])
+        table = QTableWidget(3, 3)
+        table.setHorizontalHeaderLabels(["Name", "Hair Color", "Cubol Color"])
         table.verticalHeader().setVisible(False)
         table.resize(150, 50)
 
@@ -58,8 +58,14 @@ class Window(QWidget):
             nameItem = QTableWidgetItem(name)
             colorItem = QTableWidgetItem()
             colorItem.setData(Qt.DisplayRole, color)
+            customItem = QHBoxLayout()
+            customBtn1 = QPushButton("Namco 1")
+            customBtn2 = QPushButton("Namco 2")
+            customItem.addWidget(customBtn1)
+            customItem.addWidget(customBtn2)
             table.setItem(i, 0, nameItem)
             table.setItem(i, 1, colorItem)
+            table.setItem(i, 2, customItem)
 
         table.resizeColumnToContents(0)
         table.horizontalHeader().setStretchLastSection(True)
